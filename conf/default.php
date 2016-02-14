@@ -5,4 +5,4 @@
  * @author Sam B. <sam@s-blu.de>
  */
 $conf['page_after_login'] = 'start';
-$conf['login_display_count'] = '2';
+$conf['login_display_count'] = '3';
