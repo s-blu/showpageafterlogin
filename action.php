@@ -13,7 +13,7 @@ class action_plugin_showpageafterlogin extends DokuWiki_Action_Plugin
 {
 
     /**
-     * Registers a callback function for a given event
+     * Registers a callback function for ACTION_SHOW_REDIRECT to get notified after a login/logout happened
      *
      * @param Doku_Event_Handler $controller DokuWiki's event controller object
      * @return void
@@ -24,7 +24,9 @@ class action_plugin_showpageafterlogin extends DokuWiki_Action_Plugin
     }
 
     /**
-     * Change the Page ID for the redirect after login to the configurated value
+     * Change the Page ID for the redirect after login to the configurated value.
+     * 
+     * Checks if a maximum Count is configured and if the calling user is within this count
      *
      * @param Doku_Event $event event object by reference
      * @param mixed $param [the parameters passed as fifth argument to register_hook() when this
@@ -35,10 +37,11 @@ class action_plugin_showpageafterlogin extends DokuWiki_Action_Plugin
     {
         global $INPUT;
         global $INFO;
-        $pageid = $this->getConf('page_after_login');
-        $displayCountConfig = $this->getConf('login_display_count');
 
         if ($INPUT->server->has('REMOTE_USER') && $event->data['preact'] == 'login') {
+            
+            $pageid = $this->getConf('page_after_login');
+            $displayCountConfig = $this->getConf('login_display_count');
 
             if ($displayCountConfig == 0) {
 
@@ -52,13 +55,12 @@ class action_plugin_showpageafterlogin extends DokuWiki_Action_Plugin
                 if ($username && !isset($displayCount[$username])) {
                     $displayCount[$username] = 0;
                 }
+                
                 if ($displayCount[$username] <= $displayCountConfig) {
                     $displayCount[$username]++;
                     $event->data['id'] = $pageid;
                     showpageafterlogin_save_json($displayCount);
                 }
-
-
             }
         }
 
