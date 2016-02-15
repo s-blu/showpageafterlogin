@@ -5,11 +5,10 @@ You can configure if this should happen every time or
 for a specific amount of Logins (for Instruction/New User Pages)
 
 All documentation for this plugin can be found at
-https://github.com/s-blu/showpageafterlogin
+https://www.dokuwiki.org/plugin:showpageafterlogin
 
-There are two configkeys for this plugin:
-page_after_login - Specifies the ID of the landingpage (default: start)
-login_display_count - Specifies how often the landingpage should be shown (Logincount per User) (default: 3)
+Sources can be found at
+https://github.com/s-blu/showpageafterlogin
 
 ----
 If you install this plugin manually, make sure it is installed in
