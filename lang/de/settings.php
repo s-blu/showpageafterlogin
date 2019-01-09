@@ -1,6 +1,6 @@
 <?php
 /**
- * english language file for showpageafterlogin plugin
+ * german language file for showpageafterlogin plugin
  *
  * @author Sam B. <sam@s-blu.de>
  */

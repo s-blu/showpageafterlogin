@@ -37,11 +37,11 @@ class action_plugin_showpageafterlogin extends DokuWiki_Action_Plugin
     {
         global $INPUT;
         global $INFO;
-
-        if ($INPUT->server->has('REMOTE_USER') && $event->data['preact'] == 'login') {
-            
+        
+        if ($INPUT->server->has('REMOTE_USER') && $event->data['preact'] == 'redirect') {
             $pageid = $this->getConf('page_after_login');
             $displayCountConfig = $this->getConf('login_display_count');
+
 
             if ($displayCountConfig == 0) {
 
@@ -63,11 +63,7 @@ class action_plugin_showpageafterlogin extends DokuWiki_Action_Plugin
                 }
             }
         }
-
-
     }
-
-
 }
 
 function showpageafterlogin_read_json()
